@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:tr="http://nya.desu/translator">
+    <h:head>
+        <script type="text/javascript">$(document).ready(function(){onLoad();});</script>
+    </h:head>
+    <h:body>
+            <tr:listMenu menu="#{listForm.menu}" code="Menu"
+                         rendered="#{listForm != null}" id="listMenu"/>
+
+            <tr:ledger id="itemsList" model="#{listForm.model}"/>
+    </h:body>
+</html>
+

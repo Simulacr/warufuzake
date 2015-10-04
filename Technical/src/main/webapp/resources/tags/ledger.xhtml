@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:tr="http://nya.desu/translator"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+    <composite:interface>
+        <composite:attribute name="model" required="true"/>
+    </composite:interface>
+    <composite:implementation>
+        <script type="text/javascript">addLedgerToResize("#{cc.attrs.id}\\:dataTable");</script>
+
+        <p:dataTable value="#{cc.attrs.model}" var="item" selection="#{cc.attrs.model.selectedList}" id="dataTable" scrollHeight="300" scrollable="true">
+
+            <p:column selectionMode="multiple" style="width:22px" />
+
+
+            <p:columns var="column" value="#{cc.attrs.model.modelColumns}" columnIndexVar="colIndex" width="#{column.width}"
+                       style="#{column.styleAlign == null ? '' : column.styleAlign}">
+                <f:facet name="header">
+                    <tr:label code="#{column.header}"/>
+                </f:facet>
+                <h:outputText value="#{column.valueAt(item)}"/>
+            </p:columns>
+
+        </p:dataTable>
+
+        <p:contextMenu for="dataTable" rendered="#{cc.attrs.model.menu != null}">
+            <c:forEach items="${cc.attrs.model.menu.menuItemList}" var="menuItem">
+                <p:menuitem update=":contentForm" icon="ui-icon-#{menuItem.icon}"
+                            value="#{translatorBean.getString(menuItem.code)}" onclick="#{navigation.blockerString}"
+                            actionListener="#{navigation.handleAction(menuItem.action)}"/>
+            </c:forEach>
+        </p:contextMenu>
+
+    </composite:implementation>
+</h:body>
+</html>

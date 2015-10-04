@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.1"
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    <application>
+        <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+        <!--<navigation-handler>desu.nya.web.handler.NavigationHandler</navigation-handler>-->
+        <resource-handler>desu.nya.shared.resources.UnmappedResourceHandler</resource-handler>
+    </application>
+
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>logout</from-outcome>
+            <to-view-id>/logout.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <!--<converter>-->
+        <!--<converter-for-class>desu.nya.server.entities.Measuring</converter-for-class>-->
+        <!--<converter-class>desu.nya.web.services.shopping.MeasuringServiceImpl</converter-class>-->
+    <!--</converter>-->
+</faces-config>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+    <h:body>
+        <composite:interface>
+            <composite:attribute name="path" required="true"/>
+            <composite:attribute name="height" required="false"/>
+            <composite:attribute name="width" required="true" />
+        </composite:interface>
+        <composite:implementation>
+           <script type="text/javascript">addObjectToResize("pdfViewer");</script>
+           <object id="pdfViewer" type="application/pdf" data="javax.faces.resource/pdf/#{cc.attrs.path}?ln=#{workspace.currentWorkspace}" height="#{cc.attrs.height}" width="#{cc.attrs.width}">
+               Your browser can't display pdf, <a href="javax.faces.resource/pdf/#{cc.attrs.path}?ln=#{workspace.currentWorkspace}">click</a> to download pdf instead.
+           </object>
+        </composite:implementation>
+    </h:body>
+</html>

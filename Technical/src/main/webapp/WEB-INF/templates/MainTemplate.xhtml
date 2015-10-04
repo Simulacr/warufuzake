@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:tr="http://nya.desu/translator"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="shortcut icon" type="image/x-icon" href="javax.faces.resource/favicon.ico?ln=#{workspace.currentWorkspace}"/>
+        <h:outputStylesheet library="css" name="default.css"/>
+        <h:outputStylesheet library="css" name="template.css"/>
+        <h:outputScript library="js" name="common.js"/>
+        <h:outputStylesheet library="css" name="ncomponents.css"/>
+        <title>#{workspace.title}</title>
+    </h:head>
+    <h:body>
+        <p:layout fullPage="true">
+            
+            <p:layoutUnit position="north" size="177" collapsible="true" collapseSize="20" style="position: static;" id="northUnit">
+                <tr:backgroundImage img="splashBack" repeat="repeat-x" type="png"/>
+                <tr:backgroundImage img="splash" repeat="no-repeat" type="png" style="left:160px;width:400px"/>
+                <h:form id="topForm">
+                    <p:megaMenu orientation="horizontal" autoDisplay="true" style="position: absolute; right: 0;" model="#{menuBean.megaMenu}"/>
+                </h:form>
+            </p:layoutUnit>
+            
+            <p:layoutUnit position="south" size="40">
+
+            </p:layoutUnit>
+            
+            <p:layoutUnit position="west" size="200" header="#{translatorBean.getString('Shortcuts')}"
+                          resizable="true" collapsible="true">
+                <ui:insert name="left"><ui:include src="leftColumn.xhtml"/></ui:insert>
+            </p:layoutUnit>
+            
+            <p:layoutUnit position="east" size="200" header="#{translatorBean.getString('Info')}" collapsed="true" collapsible="true">
+                <ui:insert name="right"><ui:include src="rightColumn.xhtml"/></ui:insert>
+            </p:layoutUnit>
+            
+            <p:layoutUnit position="center">
+                <ui:insert name="content">!!!!EMPTY CONTENT!!!!!</ui:insert>
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+
+</html>

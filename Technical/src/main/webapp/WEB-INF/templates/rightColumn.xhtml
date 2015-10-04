@@ -1,0 +1,21 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:tr="http://nya.desu/translator"
+      xmlns:p="http://primefaces.org/ui">
+    <h:body>
+        <ui:composition> 
+            <h:form id="rightForm">
+                <tr:label code="User_name"/>
+                <p:commandButton id="userPrefIcon" icon="ui-icon-key" value="#{menuBean.userDisplayName}"/>
+                <p:overlayPanel id="userPreferencesPanel" for="userPrefIcon" hideEffect="fade" at="">
+                    <!--<tr:link page="userPreferences" code="User_preferences" id="userPreferences"/>-->
+                    <br/>
+                    <tr:logoutLink/>
+                </p:overlayPanel>
+
+            </h:form>
+        </ui:composition> 
+    </h:body>
+</html>
+

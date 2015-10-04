@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test >
+    <table>
+        <row>
+            <col>（れい：１９５３）年</col>
+            <col>テレビほうそうを　始めた。
+            テレビは　<answer type="String" id="1">836</answer>だいだけだった。</col>
+        </row>
+        <row>
+            <col>１９５９年</col>
+            <col><answer type="String" id="2">こうたいしの　けっこんしき</answer>が　あった。
+            テレビは　<answer type="String" id="3">200万</answer>だいに　なった。</col>
+        </row>
+        <row>
+            <col>１９６４年</col>
+            <col><answer type="String" id="2">オリンピック</answer>が　あった。
+                カラーテレビが　おおく　なった。</col>
+        </row>
+        <row>
+            <col>今</col>
+            <col>ほとんどの　うちに　テレビが　ある</col>
+        </row>
+    </table>
+
+    <maru-batsu-panel>
+        <rei number="1" answer="true">１９５３年に　始めて　テレビほうそうを　しました。</rei>
+        <rei number="2" answer="false"> １９５３年に　テレビは　１、８３６だい　ありました。</rei>
+        <row number="1" answer="false">１９５０年ごろ　サラリーマンは　６か月の　きゅうりょうで　テレビを　買う　ことが　できました。</row>
+        <row number="2" answer="true">はじめて　テレビを　見た　人は　新しい　ラジオだと　思いました。</row>
+        <row number="3" answer="true">オリンピックを　カラーテレビで　見た　人が　たくさん　いました。</row>
+    </maru-batsu-panel>
+</test>

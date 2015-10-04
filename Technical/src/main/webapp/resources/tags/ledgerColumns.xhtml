@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:tr="http://nya.desu/translator">
+<h:body>
+    <composite:interface>
+        <composite:attribute name="modelColumns" required="true"/>
+        <composite:attribute name="item" required="true"/>
+    </composite:interface>
+    <composite:implementation>
+        <p:columns var="column" value="#{cc.attrs.modelColumns}" columnIndexVar="colIndex" width="#{cc.attrs.column.width}"
+                   style="#{cc.attrs.column.styleAlign == null ? '' : cc.attrs.column.styleAlign}">
+            <f:facet name="header">
+                <tr:label code="#{column.header}"/>
+            </f:facet>
+            <h:outputText value="#{column.valueAt(cc.attrs.item)}"/>
+        </p:columns>
+    </composite:implementation>
+</h:body>
+</html>

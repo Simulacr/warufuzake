@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:tr="http://nya.desu/translator"
+      xmlns:c="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <script type="text/javascript">$(document).ready(function(){onLoad();});</script>
+    </h:head>
+    <h:body>
+        <tr:formButtons buttons="#{updateForm.specialButtons}"/>
+        <h:panelGrid id="detail" columns="2" cellpadding="0">
+            <tr:label code="Name"/>
+            <tr:inputText id="name" value="#{value.displayName}"
+                                    validationMessage="Fuck!"/>
+                        
+            <tr:label code="Mail"/>
+            <p:inputText value="#{value.mail}" id="mail"/>
+
+            <tr:label code="Password"/>
+            <p:inputText value="#{value.password}" id="password"/>
+
+        </h:panelGrid>
+        <tr:formButtons buttons="#{updateForm.specialButtons}"/>
+    </h:body>
+</html>
+

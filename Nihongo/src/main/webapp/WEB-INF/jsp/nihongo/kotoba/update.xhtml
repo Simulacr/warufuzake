@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:tr="http://nya.desu/translator">
+    <h:body>
+        <tr:formButtons buttons="#{updateForm.specialButtons}"/>
+        <h:panelGrid id="main" columns="2" cellpadding="0">
+            <h:panelGrid id="detail" columns="2" cellpadding="0">
+
+                <tr:label code="Kotoba"/>
+                <tr:inputText id="kotoba" value="#{value.text}" validationMessage="Fuck!"/>
+
+                <tr:label code="Meaning"/>
+                <p:inputText value="#{value.meaning}" id="meaning"/>
+
+                <tr:label code="Lesson"/>
+                <p:inputText value="#{value.lesson}" id="lesson"/>
+
+                <tr:label code="Comment"/>
+                <p:inputTextarea value="#{value.comment}" id="comment" rows="5" cols="30" autoResize="false"/>
+            </h:panelGrid>
+            <h:panelGrid id="forms" columns="1" cellpadding="0">
+                <tr:selectOne options="#{updateForm.kotobaFormList}" action="selectKotobaForm" selected="#{updateForm.selectedForm}"/>
+                <h:panelGrid rendered="#{updateForm.selectedForm == 'Verb'}">
+                    <tr:label code="Verb"/>
+                </h:panelGrid>
+                <h:panelGrid rendered="#{updateForm.selectedForm == 'Adjective'}">
+                    <tr:label code="Adjective"/>
+                </h:panelGrid>
+            </h:panelGrid>
+        </h:panelGrid>
+        <tr:formButtons buttons="#{updateForm.specialButtons}" footer="true"/>
+    </h:body>
+</html>
+

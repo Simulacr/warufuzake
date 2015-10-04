@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc" 
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+             xmlns:beans="http://www.springframework.org/schema/beans" 
+             xmlns:context="http://www.springframework.org/schema/context"
+             xmlns:faces="http://www.springframework.org/schema/faces"
+             xsi:schemaLocation=" 
+                http://www.springframework.org/schema/mvc 
+                http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd 
+                http://www.springframework.org/schema/beans 
+                http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                http://www.springframework.org/schema/faces
+                http://www.springframework.org/schema/faces/spring-faces-2.4.xsd
+                http://www.springframework.org/schema/context   
+                http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+<!--
+ DispatcherServlet Context: определяет настройки одного сервлета; бины, 
+		которые доступны только ему 
+-->
+<!-- Разрешаем использование аннотаций Spring MVC (то есть @Controller и.т.д) -->
+<annotation-driven/>
+<!-- static resources location mapped by /resources/** -->
+<resources mapping="/css/**" location="/resources/css/"/>
+<resources mapping="/img/**" location="/resources/images/"/>
+<resources mapping="/js/**" location="/resources/js/"/>
+<resources mapping="/resources/**" location="/resources/"/>
+<!--
+ Отображение видов на jsp-файлы, лежащие в папке /WEB-INF/jsp
+-->
+<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <beans:property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+    <beans:property name="suffix" value=".xhtml"/>
+    <beans:property name="order" value="0"/>
+</beans:bean>
+
+<!--  form config file  -->
+<beans:import resource="forms.xml"/>
+
+
+<!--<faces:flow-builder-services id="facesFlowBuilderServices"  
+                                 enable-managed-beans="true" development="true"/>-->
+
+
+<beans:bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+    <beans:property name="viewClass" value="org.springframework.faces.mvc.JsfView"/>
+    <beans:property name="suffix" value=".xhtml" />
+    <beans:property name="order" value="1"/>
+    <beans:property name="cache" value="false" />
+</beans:bean>
+
+
+
+<beans:bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
+
+<beans:bean id="defaultServletHttpRequestHandler" class="org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler"/>
+
+<beans:bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+    <beans:property name="order" value="3" />
+    <beans:property name="alwaysUseFullPath" value="false" />
+    <beans:property name="mappings">
+        <beans:value>
+        </beans:value>
+    </beans:property>
+    <beans:property name="defaultHandler">
+        <beans:bean class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
+    </beans:property>
+    <beans:property name="urlMap">
+        <beans:map>
+            <beans:entry key="/resources/**" value-ref="defaultServletHttpRequestHandler" />
+            <beans:entry key="/javax.faces.resource/**" value-ref="defaultServletHttpRequestHandler" />
+            <beans:entry key="/img/**" value-ref="defaultServletHttpRequestHandler" />
+            <beans:entry key="/css/**" value-ref="defaultServletHttpRequestHandler" />
+            <beans:entry key="/js/**" value-ref="defaultServletHttpRequestHandler" />
+        </beans:map>
+    </beans:property>
+</beans:bean>
+
+<!--<beans:bean id="hibernateFlowExecutionListener"  
+          class="org.springframework.webflow.persistence.HibernateFlowExecutionListener">   
+        <beans:constructor-arg ref="sessionFactory"/>  
+        <beans:constructor-arg ref="transactionManager"/>  
+</beans:bean>-->
+</beans:beans>

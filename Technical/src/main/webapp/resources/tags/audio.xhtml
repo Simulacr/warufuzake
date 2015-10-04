@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+    <h:body>
+        <composite:interface>
+            <composite:attribute name="path" required="true" type="java.lang.String"/>
+            <composite:attribute name="width" required="false" default="300"/>
+            <composite:attribute name="height" required="false" default="30"/>
+        </composite:interface>
+        <composite:implementation>
+
+           <audio controls="" src="javax.faces.resource/audio/#{cc.attrs.path}?ln=#{workspace.currentWorkspace}" width="#{cc.attrs.width}"
+                  height="#{cc.attrs.height}" type="audio/mpeg" style="width: 300px; height:30px;">
+           </audio>
+        </composite:implementation>
+    </h:body>
+</html>

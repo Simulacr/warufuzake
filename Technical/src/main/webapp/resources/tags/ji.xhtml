@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+<h:body>
+    <composite:interface>
+        <composite:attribute name="ji" required="true" type="java.lang.String"/>
+        <composite:attribute name="type" required="false" type="java.lang.String"/>
+        <composite:attribute name="repeat" required="false" default="inherit" type="java.lang.String"/>
+        <composite:attribute name="style" required="false" type="java.lang.String" default=" "/>
+    </composite:interface>
+    <composite:implementation>
+        <div style="background-image: url('#{resources.getImagePath(cc.attrs.ji, cc.attrs.type)}');background-repeat: #{cc.attrs.repeat};#{cc.attrs.style};"></div>
+    </composite:implementation>
+</h:body>
+</html>

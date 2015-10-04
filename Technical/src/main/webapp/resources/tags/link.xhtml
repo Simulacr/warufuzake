@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:composite="http://java.sun.com/jsf/composite"
+    xmlns:p="http://primefaces.org/ui">
+    <h:body>
+        <composite:interface>
+            <composite:attribute name="id" required="true"/>
+            <composite:attribute name="code" required="true"/>
+            <composite:attribute name="page" required="true"/>
+            <composite:attribute name="immediate" required="false" default="true"/>
+        </composite:interface>
+        <composite:implementation>
+            <p:commandLink id="#{cc.attrs.id}_link" value="#{translatorBean.getString(cc.attrs.code)}"
+                          actionListener="#{navigation.handleAction(cc.attrs.page)}"
+                          immediate="#{cc.attrs.immediate}" styleClass="NLink" update=":contentForm"/>
+        </composite:implementation>
+    </h:body>
+</html>

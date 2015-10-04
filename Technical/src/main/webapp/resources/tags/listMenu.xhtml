@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:composite="http://java.sun.com/jsf/composite"
+    xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:body>
+        <composite:interface>
+            <composite:attribute name="menu" required="true"/>
+        </composite:interface>
+        <composite:implementation>
+           <p:toolbar id="Toolbar">
+               <f:facet name="left">
+                   <c:forEach items="${cc.attrs.menu.menuItemList}" var="menuItem">
+                       <p:commandButton id="ToolBar#{menuItem.code}" value="#{translatorBean.getString(menuItem.code)}"
+                                   icon="ui-icon-#{menuItem.icon}" onclick="#{navigation.blockerString}"
+                                   actionListener="#{navigation.handleAction(menuItem.action)}"
+                                   update=":contentForm"/>
+                   </c:forEach>
+               </f:facet>
+               <f:facet name="right">
+                   <p:menuButton value="#{translatorBean.getString(cc.attrs.menu.selector.label)}" rendered="#{cc.attrs.menu.selector != null}" id="menuButton">
+                       <p:menuitem value="#{translatorBean.getString('All')}" actionListener="#{cc.attrs.menu.onSelectorClick(0)}" update=":contentForm"
+                                   icon="ui-icon-disk" onclick="#{navigation.blockerString}"/>
+                       <c:forEach items="${cc.attrs.menu.selector.items}" var="item">
+                           <p:menuitem value="#{item}" actionListener="#{cc.attrs.menu.onSelectorClick(item)}" update=":contentForm"
+                                       icon="ui-icon-disk" onclick="#{navigation.blockerString}"/>
+                       </c:forEach>
+                   </p:menuButton>
+               </f:facet>
+           </p:toolbar>
+        </composite:implementation>
+    </h:body>
+</html>
