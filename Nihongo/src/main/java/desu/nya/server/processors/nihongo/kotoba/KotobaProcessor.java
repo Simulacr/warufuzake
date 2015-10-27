@@ -3,6 +3,7 @@ package desu.nya.server.processors.nihongo.kotoba;
 import desu.nya.server.entities.Kotoba;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -17,4 +18,6 @@ public interface KotobaProcessor {
   void saveKotoba(Kotoba kotoba);
 
   Integer getLastLessonNumber();
+
+    List<Kotoba> getAllKotobaOfLessons(Set<Integer> lessons);
 }

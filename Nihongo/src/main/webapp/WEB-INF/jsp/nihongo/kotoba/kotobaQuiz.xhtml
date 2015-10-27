@@ -7,15 +7,63 @@
       xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:tr="http://nya.desu/translator">
 <h:body>
-    <tr:formButtons buttons="#{updateForm.specialButtons}"/>
-    <h:panelGrid id="main" columns="2" cellpadding="0">
-        <p:selectManyButton value="#{updateForm.selectedLessons}">
-            <c:forEach items="${updateForm.lessonList}" var="lesson">
-                <f:selectItem itemLabel="#{lesson}" itemValue="#{lesson}" />
-            </c:forEach>
-        </p:selectManyButton>
+    <p:commandButton id="lessonBtn" type="button" value="Lessons"/>
+    <p:overlayPanel for="lessonBtn" showEffect="fade">
+        <h:panelGrid id="main" columns="10" cellpadding="0" binding="#{ff.lessonPanel}"/>
+    </p:overlayPanel>
+    <br/><br/>
+    <p:outputLabel for="quizType" value="Quiz type: "/>
+    <p:selectOneMenu id="quizType" style="width: 200px" value="#{ff.quizType}">
+        <f:selectItem itemValue="0" itemLabel="Select type" noSelectionOption="true"/>
+        <f:selectItem itemValue="1" itemLabel="Meaning->Kanji"/>
+        <f:selectItem itemValue="2" itemLabel="Hiragana->Kanji"/>
+        <f:selectItem itemValue="3" itemLabel="Kanji->Hiragana"/>
+    </p:selectOneMenu>
+
+    <p:outputLabel for="isQuiz" value="Quiz?"/>
+    <p:selectBooleanCheckbox id="isQuiz" value="#{ff.quiz}"/>
+
+    <br/><br/>
+
+    <h:panelGrid rendered="#{ff.randomKotoba != null}">
+        <p:panel rendered="#{ff.quizType == 1 || ff.quizType == 2}" id="mqpanel">
+            <h:panelGrid columns="4">
+                <p:outputLabel value="Meaning:" rendered="#{ff.quizType == 1}"/>
+                <p:outputLabel value="#{ff.randomKotoba.meaning}" rendered="#{ff.quizType == 1}"/>
+                <p:outputLabel value="Hiragana:" rendered="#{ff.quizType == 2}"/>
+                <p:outputLabel value="#{ff.randomKotoba.kana}" rendered="#{ff.quizType == 2}"/>
+                <p:spacer/>
+                <p:spacer/>
+
+                <p:outputLabel value="Kanji:"/>
+                <p:inputText value="#{ff.answer}" disabled="#{ff.quiz}">
+                    <p:ajax event="blur" update="mqpanel" listener="#{ff.onAnswer}"/>
+                </p:inputText>
+                <p:commandButton icon="ui-icon-backspace" actionListener="#{ff.onBackspace}"
+                                 update="mqpanel" disabled="#{ff.answer.isEmpty()}"/>
+                <p:commandButton icon="ui-icon-delete" actionListener="#{ff.onDelete}"
+                                 update="mqpanel" disabled="#{ff.answer.isEmpty()}"/>
+
+                <p:outputLabel value="Count:"/>
+                <p:inputText value="#{ff.jiCount}" style="width: 50px" />
+                <p:spacer/>
+                <p:spacer/>
+            </h:panelGrid>
+            <p:panelGrid columns="#{ff.jiCount}" rendered="#{ff.quiz}" >
+                    <c:forEach items="${ff.randomKanjiList}" var="kanji">
+                        <p:commandButton label="#{kanji}" value="#{kanji}" update="mqpanel"
+                                actionListener="#{ff.onRandomKanjiSelect}"/>
+                    </c:forEach>
+                <c:forEach items="${ff.randomHiraganaList}" var="hiragana">
+                    <p:commandButton label="#{hiragana}" value="#{hiragana}" update="mqpanel"
+                                     actionListener="#{ff.onRandomKanjiSelect}"/>
+                </c:forEach>
+            </p:panelGrid>
+        </p:panel>
     </h:panelGrid>
-    <tr:formButtons buttons="#{updateForm.specialButtons}" footer="true"/>
+
+
+    <tr:formButtons buttons="#{ff.specialButtons}" footer="true"/>
 </h:body>
 </html>
 

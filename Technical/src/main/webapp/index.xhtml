@@ -15,7 +15,7 @@
                                     <ui:include src="WEB-INF/jsp/#{navigation.pageToNavigate}">
                                         <ui:param name="listForm"   value="#{navigation.listForm}"/>
                                         <ui:param name="updateForm" value="#{navigation.updateForm}"/>
-                                        <ui:param name="currentForm" value="#{navigation.currentForm}"/>
+                                        <ui:param name="ff" value="#{navigation.currentForm}"/>
                                         <c:if test="${navigation.updateForm != null}">
                                             <ui:param name="value" value="#{navigation.updateForm.value}"/>
                                         </c:if>

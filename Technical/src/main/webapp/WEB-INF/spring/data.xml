@@ -49,7 +49,6 @@
     <property name="configLocation" value="WEB-INF/hibernate.cfg.xml"/>
     <property name="hibernateProperties">
         <props>
-            <prop key="hibernate.show_sql">true</prop>
             <prop key="hibernate.dialect">${jdbc.dialect}</prop>
             <prop key="hibernate.connection.charSet">UTF-8</prop>
             <prop key="hibernate.search.lucene_version">LUCENE_35</prop>

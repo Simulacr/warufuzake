@@ -42,7 +42,7 @@ public class KanjiServiceImpl implements KanjiService {
   }
 
   @Override
-  public List<Kanji> getKanjiOfLesson(int lesson) {
+  public List<Kanji> getListOfLesson(int lesson) {
     return processor.getKanjiOfLesson(lesson);
   }
 

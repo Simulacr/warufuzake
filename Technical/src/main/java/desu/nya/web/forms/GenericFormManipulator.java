@@ -23,6 +23,7 @@ import javax.annotation.PostConstruct;
 public class GenericFormManipulator<E extends GenericEntity, T extends GenericService<E>> implements Serializable {
   private GenericListForm listForm;
   private GenericUpdateForm editForm;
+  private GenericForm simpleForm;
   private T service;
   private FormType state = FormType.LIST;
   private final Class listFormClass;
@@ -72,7 +73,7 @@ public class GenericFormManipulator<E extends GenericEntity, T extends GenericSe
   }
 
   public GenericForm handleAction(String action) throws NoSuchMethodException {
-    Class clazz = state == FormType.LIST ? listFormClass : editFormClass;
+    Class clazz = getCurrentForm().getClass();
     try {
       clazz.getMethod("on" + action.toUpperCase().charAt(0)
               + action.toLowerCase().substring(1)).invoke(getCurrentForm());
@@ -96,7 +97,11 @@ public class GenericFormManipulator<E extends GenericEntity, T extends GenericSe
   }
 
   public GenericForm getCurrentForm() {
-    return state == FormType.LIST ? getListForm() : getUpdateForm();
+    switch (state) {
+      case LIST: return getListForm();
+      case SIMPLE: return simpleForm;
+      default: return getUpdateForm();
+    }
   }
 
   public void switchModeTo(FormType mode) {
@@ -123,5 +128,9 @@ public class GenericFormManipulator<E extends GenericEntity, T extends GenericSe
 
   public List<E> getFullList(){
     return service.getFullList();
+  }
+
+  public void setSimpleForm(GenericForm simpleForm) {
+    this.simpleForm = simpleForm;
   }
 }

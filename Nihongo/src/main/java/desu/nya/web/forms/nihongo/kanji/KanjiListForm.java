@@ -4,6 +4,7 @@ import desu.nya.server.entities.Kanji;
 import desu.nya.web.forms.GenericListForm;
 import desu.nya.web.forms.GenericModel;
 import desu.nya.web.forms.ListMenu;
+import desu.nya.web.forms.nihongo.GenericHasLessonListForm;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  *
  * @author fess
  */
-public class KanjiListForm extends GenericListForm<Kanji>{
+public class KanjiListForm extends GenericHasLessonListForm<Kanji> {
   private List<Kanji> filteredList = null;
 
   @Override
@@ -24,14 +25,6 @@ public class KanjiListForm extends GenericListForm<Kanji>{
   @Override
   protected void initMenu() {
     super.initMenu();
-    List<Long> list = new ArrayList<>();
-    Integer lastLesson  = getKanjiManipulator().getService().getLastLessonNumber();
-    for(Long i = 1l; i <= lastLesson; i++)
-      list.add(i);
-    menu.setSelector(new ListMenu.Selector<Long>(list, "Lesson"));
-    menu.<Long>setClickCommand(target -> {
-      filteredList = getKanjiManipulator().getService().getKanjiOfLesson(target.intValue());
-    });
     menu.addMenuItem("Quiz", "Quiz", "search");
   }
 

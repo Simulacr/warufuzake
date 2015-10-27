@@ -24,9 +24,6 @@ public class KotobaImpl extends GenericHasLessonEntityImpl implements Kotoba {
   @Column(name = "comment")
   private String comment;
   @OneToOne(fetch= FetchType.EAGER)
-  @JoinColumn(name="verb_id")
-  private VerbFormImpl verbForm;
-  @OneToOne(fetch= FetchType.EAGER)
   @JoinColumn(name="adjective_id")
   private AdjectiveFormImpl adjectiveForm;
   @ManyToMany(fetch= FetchType.EAGER)
@@ -84,20 +81,8 @@ public class KotobaImpl extends GenericHasLessonEntityImpl implements Kotoba {
     this.adjectiveForm = adjectiveForm;
   }
 
-  public VerbFormImpl getVerbForm() {
-    return verbForm;
-  }
-
-  public void setVerbForm(VerbFormImpl verbForm) {
-    this.verbForm = verbForm;
-  }
-
   public boolean isAdjective() {
     return adjectiveForm != null;
-  }
-
-  public boolean isVerb() {
-    return verbForm != null;
   }
 
   public Set<KanjiImpl> getKanjis() {

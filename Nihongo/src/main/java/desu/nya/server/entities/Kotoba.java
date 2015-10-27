@@ -24,5 +24,7 @@ public interface Kotoba extends HasLessonEntity{
 
   boolean isAdjective();
 
-  boolean isVerb();
+  String getKana();
+
+  void setKana(String kana);
 }

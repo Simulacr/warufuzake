@@ -49,8 +49,10 @@ public class NavigationBean implements Serializable {
   }
 
   public String getPageToNavigate() {
-    return formManipulator.getCurrentForm() == null ? "" :
+    String page =  formManipulator.getCurrentForm() == null ? "" :
             NavigationUtils.getCurrentWorkspace() + "/" + formManipulator.getCurrentForm().getPagePath() + ".xhtml";
+    System.err.print("Navigate to " + page);
+    return page;
   }
 
   public String getPageType() {

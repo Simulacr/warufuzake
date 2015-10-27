@@ -17,6 +17,8 @@ public interface KanjiProcessor {
 
   List<Kanji> getKanjiOfLesson(int lesson);
 
+  List<Kanji> getKanjiBeforeLesson(int lesson);
+
   Integer getLastLessonNumber();
 
   Integer getLastKanjiNumber();

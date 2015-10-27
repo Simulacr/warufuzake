@@ -5,7 +5,7 @@ package desu.nya.shared.enums;
  * @author fess
  */
 public enum FormType {
-    LIST(0), UPDATE(1), VIEW(2), ADD(3);
+    LIST(0), UPDATE(1), VIEW(2), ADD(3), SIMPLE(5);
     
     private final int code;
     

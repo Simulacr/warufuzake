@@ -48,6 +48,14 @@ public class KanjiProcessorImpl extends GenericProcessorImpl<Kanji> implements K
   }
 
   @Override
+  public List<Kanji> getKanjiBeforeLesson(int lesson) {
+    Criteria criteria = getCriteria(Kanji.class);
+    if(lesson > -1)
+      criteria.add(Restrictions.le("lesson", lesson));
+    return criteria.list();
+  }
+
+  @Override
   @SuppressWarnings("unchecked")
   @Transactional
   public Integer getLastLessonNumber() {
