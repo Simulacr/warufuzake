@@ -41,6 +41,7 @@ public class MenuBean implements Serializable {
             createMenuItem("Hiragana", "hiragana", false),
             createMenuItem("Katakana", "katakana", false),
             createMenuItem("Kanji", "kanji", false),
+            createMenuItem("Test", "testo", true),
             createMenuItem("Kotoba", "kotobaQuiz", true)));
     shortcutsMenu.addElement(createSubMenu("Books",
             createMenuItem("Minna_no_nihongo", "minnaNoNihongo", false),
