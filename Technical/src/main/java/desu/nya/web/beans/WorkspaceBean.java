@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  *
  * @author fess
@@ -23,5 +26,9 @@ public class WorkspaceBean{
   public String getCurrentWorkspace()
   {
     return userUtils.getDefaultWorkspace().getName();
+  }
+
+  public List<String> getStyleSheets() {
+    return Arrays.asList("common.css");
   }
 }
