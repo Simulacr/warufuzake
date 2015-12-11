@@ -75,8 +75,9 @@ public class GenericFormManipulator<E extends GenericEntity, T extends GenericSe
   public GenericForm handleAction(String action) throws NoSuchMethodException {
     Class clazz = getCurrentForm().getClass();
     try {
-      clazz.getMethod("on" + action.toUpperCase().charAt(0)
-              + action.toLowerCase().substring(1)).invoke(getCurrentForm());
+      String actionName = "on" + action.toUpperCase().charAt(0) + action.toLowerCase().substring(1);
+      System.err.println("Trying to navigate method [" + actionName + "] in class [" + clazz.getSimpleName() + "]");
+      clazz.getMethod(actionName).invoke(getCurrentForm());
     } catch (InvocationTargetException | IllegalAccessException x) {
       x.printStackTrace();
     }

@@ -25,7 +25,7 @@ public abstract class GenericUpdateForm<E> implements GenericForm<E> {
   }
 
   protected GenericFormManipulator manipulator;
-  private List<SpecialButton> specialButtons = new ArrayList<SpecialButton>();
+  private List<SpecialButton> specialButtons = new ArrayList<>();
   private boolean isNew;
   private Translator translator;
 
