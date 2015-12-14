@@ -1,5 +1,7 @@
 package desu.nya.services.nihongo.test;
 
+import desu.nya.shared.nihongo.test.adposition.AdpositionParser;
+import desu.nya.shared.nihongo.test.adposition.Test;
 import desu.nya.shared.nihongo.test.adposition.TestAdposition;
 
 import java.util.Arrays;
@@ -10,27 +12,27 @@ import java.util.List;
  */
 public class TestServiceImpl implements TestService {
     @Override
-    public TestAdposition createNewEntity() {
+    public Test createNewEntity() {
         return null;
     }
 
     @Override
-    public void save(TestAdposition entity) {
+    public void save(Test entity) {
 
     }
 
     @Override
-    public void removeList(List<TestAdposition> list) {
+    public void removeList(List<Test> list) {
 
     }
 
     @Override
-    public void removeList(TestAdposition[] list) {
+    public void removeList(Test[] list) {
 
     }
 
     @Override
-    public List<TestAdposition> getFullList() {
-        return Arrays.asList(new TestAdposition());
+    public List<Test> getFullList() {
+        return Arrays.asList(AdpositionParser.getInstance().get(35));
     }
 }

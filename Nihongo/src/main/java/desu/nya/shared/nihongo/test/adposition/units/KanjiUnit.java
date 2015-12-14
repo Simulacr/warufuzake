@@ -17,13 +17,15 @@ public class KanjiUnit implements Unit {
     return "<ruby><rb>" + kanji + "</rb><rp>(</rp><rt>"  + furi + "</rt><rp>)</rp></ruby>";
   }
 
-  public KanjiUnit(String kanji, String furi) {
-        this.kanji = kanji;
-        this.furi = furi;
+  public KanjiUnit(String mixed) {
+    String[] temp = mixed.split(";");
+    System.err.println(mixed);
+    kanji = temp[0];
+    furi = temp[1];
     label = new HtmlOutputText();
     label.setEscape(false);
     label.setValue(toString());
-    }
+  }
 
   @Override
   public UIComponent getComponent()

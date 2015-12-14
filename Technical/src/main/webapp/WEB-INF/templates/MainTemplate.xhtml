@@ -15,7 +15,7 @@
         <h:outputScript library="js" name="common.js"/>
         <h:outputStylesheet library="css" name="ncomponents.css"/>
         <c:forEach items="#{workspace.styleSheets}" var="css">
-            <h:outputStylesheet library="css" name="#{css}"/>
+            <h:outputStylesheet library="#{workspace.currentWorkspace}" name="css/#{css}"/>
         </c:forEach>
         <title>#{workspace.title}</title>
     </h:head>

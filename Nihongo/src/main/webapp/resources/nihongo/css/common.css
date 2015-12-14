@@ -1,0 +1,9 @@
+.validMondai {
+    color: #036fab !important;
+    border-color: #036fab !important;
+}
+
+.invalidMondai {
+    color: #D20005 !important;
+    border-color: #D20005 !important;
+}

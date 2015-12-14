@@ -1,6 +1,6 @@
 package desu.nya.web.forms.nihongo.test;
 
-import desu.nya.shared.nihongo.test.adposition.TestAdposition;
+import desu.nya.shared.nihongo.test.adposition.Test;
 import desu.nya.web.forms.Form;
 import desu.nya.web.forms.GenericUpdateForm;
 import desu.nya.web.forms.SpecialButton;
@@ -13,7 +13,7 @@ import java.util.List;
  * Created by Ker on 07.12.2015.
  */
 @Form("test/go")
-public class TestUpdateForm extends GenericUpdateForm<TestAdposition>  {
+public class TestUpdateForm extends GenericUpdateForm<Test>  {
   private List<String> list = new ArrayList<>();
   @Override
   protected void initSpecialButtons()
@@ -22,7 +22,7 @@ public class TestUpdateForm extends GenericUpdateForm<TestAdposition>  {
   }
 
   @Override
-  public void setValue(TestAdposition value)
+  public void setValue(Test value)
   {
     super.setValue(value);
     int questionSize = value.register();
