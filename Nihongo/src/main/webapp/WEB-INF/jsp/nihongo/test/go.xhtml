@@ -8,10 +8,16 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:tr="http://nya.desu/translator"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <div style="font-size: 17px">
-        <p:wizard binding="${value.panel}" flowListener="${ff.onFlowProcess}"/>
-    </div>
-    <tr:formButtons buttons="#{ff.specialButtons}" footer="true"/>
-</f:view>
+<h:body>
+    <p:panel header="${ff.title}">
+        <p:wizard flowListener="#{ff.onFlowProcess}">
+            <c:forEach items="${value.tabs}" var="tab">
+                <p:tab binding="${tab}"/>
+            </c:forEach>
+        </p:wizard>
+    </p:panel>
+    <p:commandButton value="#{translatorBean.getString('Validate')}" disabled="${ff.lastTab}"
+                     actionListener="#{navigation.handleAction('validate')}" update=":contentForm"
+                     immediate="true" onclick="#{navigation.blockerString}" style="position: absolute;bottom:1px;"/>
+</h:body>
 </html>

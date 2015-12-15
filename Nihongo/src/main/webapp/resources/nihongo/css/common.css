@@ -17,3 +17,11 @@
     font-weight: bold !important;
     font-style: italic !important;
 }
+
+.kanjiPanel {
+    font-size: 17px !important;
+    border: 0;
+}
+.listUnit.ui-state-active {
+    text-decoration: line-through !important;
+}

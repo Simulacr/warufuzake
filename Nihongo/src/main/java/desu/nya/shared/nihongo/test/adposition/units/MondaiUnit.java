@@ -19,7 +19,7 @@ public class MondaiUnit implements Unit {
     this.answer = answer;
     inputText = new InputText();
     inputText.setStyleClass(styleClass);
-    inputText.setRequired(true);
+//    inputText.setRequired(true);
     inputText.setStyle("width: " + width + "px");
   }
 

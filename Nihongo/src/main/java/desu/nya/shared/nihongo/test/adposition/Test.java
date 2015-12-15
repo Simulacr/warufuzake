@@ -3,6 +3,7 @@ package desu.nya.shared.nihongo.test.adposition;
 import desu.nya.server.entities.HasLessonEntity;
 import desu.nya.shared.nihongo.test.adposition.units.Unit;
 import org.primefaces.component.panelgrid.PanelGrid;
+import org.primefaces.component.tabview.Tab;
 import org.primefaces.component.wizard.Wizard;
 
 import java.util.ArrayList;
@@ -16,14 +17,14 @@ public class Test implements HasLessonEntity {
   private Integer id;
   private List<TestAdposition> tests;
   private List<Unit> list;
-  private Wizard panel;
+  private List<Tab> panel;
 
   public Test(Integer id, Integer lesson)
   {
     this.id = id;
     this.lesson = lesson;
     tests = new ArrayList<>();
-    panel = new Wizard();
+    panel = new ArrayList<>();
   }
 
   @Override
@@ -78,12 +79,12 @@ public class Test implements HasLessonEntity {
     return isAllValid;
   }
 
-  public Wizard getPanel()
+  public List<Tab> getTabs()
   {
     return panel;
   }
 
-  public void setPanel(Wizard panel)
+  public void setTabs(List<Tab> panel)
   {
     this.panel = panel;
   }

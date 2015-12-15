@@ -15,6 +15,7 @@ public abstract class GenericUpdateForm<E> implements GenericForm<E> {
   protected E item;
   protected GenericService<E> service;
   private GenericForm previousForm;
+  private String title = "";
 
   @Override
   public String getPagePath() {
@@ -115,5 +116,15 @@ public abstract class GenericUpdateForm<E> implements GenericForm<E> {
 
   public void setTranslator(Translator translator) {
     this.translator = translator;
+  }
+
+  public String getTitle()
+  {
+    return title;
+  }
+
+  public void setTitle(String title)
+  {
+    this.title = title;
   }
 }

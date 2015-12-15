@@ -6,6 +6,7 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.WritableByteChannel;
 import java.util.Map.Entry;
+import java.util.concurrent.TimeoutException;
 import javax.faces.application.Resource;
 import javax.faces.application.ResourceHandler;
 import javax.faces.application.ResourceHandlerWrapper;
@@ -99,6 +100,10 @@ public class UnmappedResourceHandler extends ResourceHandlerWrapper {
       for (ByteBuffer buffer = ByteBuffer.allocateDirect(10240); input.read(buffer) != -1; buffer.clear()) {
         output.write((ByteBuffer) buffer.flip());
       }
+    }
+    catch (Exception ex){
+      System.err.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + resourceName);
+      throw ex;
     } finally {
       if (output != null) try {
         output.close();

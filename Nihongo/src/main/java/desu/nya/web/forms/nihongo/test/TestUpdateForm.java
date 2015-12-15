@@ -16,10 +16,12 @@ import java.util.List;
 @Form("test/go")
 public class TestUpdateForm extends GenericUpdateForm<Test>  {
   private List<String> list = new ArrayList<>();
+  private List<Boolean> checked = new ArrayList<>();
   @Override
   protected void initSpecialButtons()
   {
     getSpecialButtons().add(new SpecialButton("Validate", "validate", false));
+    getSpecialButtons().add(new SpecialButton("Back", "close", true));
   }
 
   @Override
@@ -27,6 +29,7 @@ public class TestUpdateForm extends GenericUpdateForm<Test>  {
   {
     super.setValue(value);
     int questionSize = value.register();
+    setTitle(getTranslator().getString("Lesson") + value.getLesson());
     for(int i = 0; i < questionSize; i++)
       list.add("");
   }
@@ -36,7 +39,10 @@ public class TestUpdateForm extends GenericUpdateForm<Test>  {
       getManipulator().getMessageDialog().addMessage("Perfect!!");
   }
 
+
+  private boolean lastTab;
   public String onFlowProcess(FlowEvent event) {
+    lastTab = event.getNewStep() == null;
 //    if(getValue().validate(list))
       return event.getNewStep();
 //    else
@@ -51,5 +57,25 @@ public class TestUpdateForm extends GenericUpdateForm<Test>  {
   public void setList(List<String> list)
   {
     this.list = list;
+  }
+
+  public boolean isLastTab()
+  {
+    return lastTab;
+  }
+
+  public void setLastTab(boolean lastTab)
+  {
+    this.lastTab = lastTab;
+  }
+
+  public List<Boolean> getChecked()
+  {
+    return checked;
+  }
+
+  public void setChecked(List<Boolean> checked)
+  {
+    this.checked = checked;
   }
 }

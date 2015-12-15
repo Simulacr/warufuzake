@@ -1,6 +1,7 @@
 package desu.nya.shared.nihongo.test.adposition;
 
 import desu.nya.shared.nihongo.test.adposition.units.Unit;
+import org.primefaces.component.panel.Panel;
 import org.primefaces.component.tabview.Tab;
 import org.primefaces.component.wizard.Wizard;
 
@@ -16,9 +17,9 @@ public class TestAdposition {
     private List<AdpositionUnit> mondai = new ArrayList<>();
   private int width = 10;
 
-  public void addAdpositionUnit(Wizard wizard, String content, String type, String labelValue, Tab tab) {
-    boolean isRei = "rei".equals(type);
-    AdpositionUnit adpositionUnit = new AdpositionUnit(content, width, isRei);
+  public void addAdpositionUnit(String content, String type, String labelValue, Panel panel) {
+    boolean isRei = "rei".equals(type) || "list".equals(type);
+    AdpositionUnit adpositionUnit = new AdpositionUnit(content, width, type);
     if(isRei) {
       rei.add(adpositionUnit);
     }
@@ -27,10 +28,9 @@ public class TestAdposition {
     }
     HtmlOutputText label = new HtmlOutputText();
     label.setValue(labelValue);
-    tab.getChildren().add(label);
-    tab.getChildren().addAll(adpositionUnit.getComponents());
-    tab.getChildren().add(getBR());
-    wizard.getChildren().add(tab);
+    panel.getChildren().add(label);
+    panel.getChildren().addAll(adpositionUnit.getComponents());
+    panel.getChildren().add(getBR());
   }
 
     public TestAdposition(int width) {
