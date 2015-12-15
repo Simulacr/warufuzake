@@ -14,11 +14,13 @@ public class MondaiUnit implements Unit {
   private String answer;
   private InputText inputText;
 
-  public MondaiUnit(String answer)
+  public MondaiUnit(String answer, int width)
   {
     this.answer = answer;
     inputText = new InputText();
-    inputText.setStyle("width: 30px");
+    inputText.setStyleClass(styleClass);
+    inputText.setRequired(true);
+    inputText.setStyle("width: " + width + "px");
   }
 
   @Override

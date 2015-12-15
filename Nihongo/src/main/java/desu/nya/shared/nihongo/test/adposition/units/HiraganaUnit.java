@@ -19,6 +19,7 @@ public class HiraganaUnit implements Unit {
   public HiraganaUnit(String hiragana) {
         this.hiragana = hiragana;
     label = new HtmlOutputText();
+//    label.setStyleClass(styleClass);
     label.setValue(hiragana);
     }
 

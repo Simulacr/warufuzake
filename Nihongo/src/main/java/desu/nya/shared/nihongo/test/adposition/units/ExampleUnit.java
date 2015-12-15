@@ -1,5 +1,7 @@
 package desu.nya.shared.nihongo.test.adposition.units;
 
+import org.primefaces.component.inputtext.InputText;
+
 import javax.faces.component.UIComponent;
 import javax.faces.component.html.HtmlOutputText;
 
@@ -8,7 +10,7 @@ import javax.faces.component.html.HtmlOutputText;
  */
 public class ExampleUnit implements Unit {
     private String example;
-  private HtmlOutputText label;
+  private InputText inputText;
 
   @Override
   public String toString()
@@ -16,15 +18,19 @@ public class ExampleUnit implements Unit {
     return example;
   }
 
-  public ExampleUnit(String example) {
+  public ExampleUnit(String example, int width) {
         this.example = example;
-    label = new HtmlOutputText();
-    label.setValue(example);
+    inputText = new InputText();
+    inputText.setStyleClass(exampleClass);
+    inputText.setStyleClass(styleClass);
+    inputText.setDisabled(true);
+    inputText.setValue(example);
+    inputText.setStyle("width: " + width + "px");
     }
 
   @Override
   public UIComponent getComponent()
   {
-    return label;
+    return inputText;
   }
 }

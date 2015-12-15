@@ -1,15 +1,11 @@
 package desu.nya.shared.nihongo.test.adposition;
 
-import desu.nya.server.entities.GenericEntity;
-import desu.nya.server.entities.HasLessonEntity;
-import desu.nya.server.entities.impl.GenericHasLessonEntityImpl;
 import desu.nya.shared.nihongo.test.adposition.units.Unit;
-import org.primefaces.component.panelgrid.PanelGrid;
+import org.primefaces.component.tabview.Tab;
+import org.primefaces.component.wizard.Wizard;
 
-import javax.faces.component.UIComponent;
 import javax.faces.component.html.HtmlOutputText;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -18,22 +14,27 @@ import java.util.List;
 public class TestAdposition {
     private List<AdpositionUnit> rei = new ArrayList<>();
     private List<AdpositionUnit> mondai = new ArrayList<>();
+  private int width = 10;
 
-  public void addAdpositionUnit(PanelGrid panel, String content, String type) {
+  public void addAdpositionUnit(Wizard wizard, String content, String type, String labelValue, Tab tab) {
     boolean isRei = "rei".equals(type);
-    AdpositionUnit adpositionUnit = new AdpositionUnit(content, isRei);
+    AdpositionUnit adpositionUnit = new AdpositionUnit(content, width, isRei);
     if(isRei) {
       rei.add(adpositionUnit);
     }
     else {
       mondai.add(adpositionUnit);
     }
-    panel.getChildren().addAll(adpositionUnit.getComponents());
-    panel.getChildren().add(getBR());
+    HtmlOutputText label = new HtmlOutputText();
+    label.setValue(labelValue);
+    tab.getChildren().add(label);
+    tab.getChildren().addAll(adpositionUnit.getComponents());
+    tab.getChildren().add(getBR());
+    wizard.getChildren().add(tab);
   }
 
-    public TestAdposition() {
-
+    public TestAdposition(int width) {
+      this.width = width;
     }
 
   public int register(List<Unit> list) {

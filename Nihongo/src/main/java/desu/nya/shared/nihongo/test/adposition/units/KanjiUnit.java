@@ -19,10 +19,10 @@ public class KanjiUnit implements Unit {
 
   public KanjiUnit(String mixed) {
     String[] temp = mixed.split(";");
-    System.err.println(mixed);
     kanji = temp[0];
     furi = temp[1];
     label = new HtmlOutputText();
+//    label.setStyleClass(styleClass);
     label.setEscape(false);
     label.setValue(toString());
   }

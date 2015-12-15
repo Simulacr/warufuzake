@@ -19,7 +19,7 @@ public class AdpositionUnit {
 
     private List<Unit> units;
 
-    public AdpositionUnit(String content, boolean rei) {
+    public AdpositionUnit(String content, int width, boolean rei) {
       //TODO validate
       int pos = 0;
       int k_beg = 0;
@@ -45,8 +45,8 @@ public class AdpositionUnit {
             break;
           case Q_ED:
             units.add(rei ?
-                new ExampleUnit(content.substring(q_beg + 1, pos)) :
-                new MondaiUnit (content.substring(q_beg + 1, pos)));
+                new ExampleUnit(content.substring(q_beg + 1, pos), width) :
+                new MondaiUnit (content.substring(q_beg + 1, pos), width));
             h_beg = pos;
             break;
         }

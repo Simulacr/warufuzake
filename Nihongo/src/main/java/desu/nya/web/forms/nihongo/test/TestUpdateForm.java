@@ -5,6 +5,7 @@ import desu.nya.web.forms.Form;
 import desu.nya.web.forms.GenericUpdateForm;
 import desu.nya.web.forms.SpecialButton;
 import desu.nya.web.utils.MessageDialog;
+import org.primefaces.event.FlowEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,13 @@ public class TestUpdateForm extends GenericUpdateForm<Test>  {
   public void onValidate() {
     if(getValue().validate(list))
       getManipulator().getMessageDialog().addMessage("Perfect!!");
+  }
+
+  public String onFlowProcess(FlowEvent event) {
+//    if(getValue().validate(list))
+      return event.getNewStep();
+//    else
+//      return "confirm";
   }
 
   public List<String> getList()

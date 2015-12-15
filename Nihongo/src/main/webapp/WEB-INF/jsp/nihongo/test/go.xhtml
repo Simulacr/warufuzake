@@ -9,7 +9,9 @@
       xmlns:tr="http://nya.desu/translator"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-<p:panelGrid binding="${value.panel}"/>
-    <tr:formButtons buttons="#{updateForm.specialButtons}" footer="true"/>
+    <div style="font-size: 17px">
+        <p:wizard binding="${value.panel}" flowListener="${ff.onFlowProcess}"/>
+    </div>
+    <tr:formButtons buttons="#{ff.specialButtons}" footer="true"/>
 </f:view>
 </html>

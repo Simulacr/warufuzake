@@ -7,6 +7,9 @@ import java.util.List;
  * Created by Ker on 07.12.2015.
  */
 public interface Unit {
+  String styleClass = "kanjiTest";
+  String exampleClass = "rei";
+
   UIComponent getComponent();
 
   default List<Unit> register(List<Unit> list) {

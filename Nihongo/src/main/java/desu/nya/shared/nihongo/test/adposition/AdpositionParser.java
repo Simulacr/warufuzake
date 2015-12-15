@@ -1,5 +1,6 @@
 package desu.nya.shared.nihongo.test.adposition;
 
+import org.primefaces.component.tabview.Tab;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -41,14 +42,20 @@ public class AdpositionParser {
         NodeList blocks = document.getDocumentElement().getChildNodes();
         for(int i=0; i < blocks.getLength(); i++) {
           Node block = blocks.item(i);
-          if(block instanceof Element) {//block
-            TestAdposition testAdposition = new TestAdposition();
+          if(block instanceof Element) {//block-tab
+            int width = Integer.parseInt(((Element) block).getAttribute("width"));
+            Tab tab = new Tab();
+            String tabTitle = ((Element) block).getAttribute("label");
+            tab.setTitle(tabTitle);
+            tab.setId("tab" + i);
+            TestAdposition testAdposition = new TestAdposition(width);
             NodeList childNodes = block.getChildNodes();
             for(int j = 0; j< childNodes.getLength(); j++) {
               Node child = childNodes.item(j);
               if(child instanceof Element) {
                 String content = child.getTextContent().trim();
-                testAdposition.addAdpositionUnit(test.getPanel(), content, child.getNodeName());
+                String label = ((Element) child).getAttribute("label");
+                testAdposition.addAdpositionUnit(test.getPanel(), content, child.getNodeName(), label, tab);
               }
             }
             test.addTest(testAdposition);
