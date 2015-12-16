@@ -40,3 +40,13 @@ var waitForFinalEvent = (function () {
         timers[uniqueId] = setTimeout(callback, ms);
     };
 })();
+
+function checkTestVariant(elem) {
+    var classes = elem.className;
+    if(classes.indexOf("ui-state-disabled") != -1)
+        return;
+    if(classes.indexOf("listUnit ui-state-active") == -1)
+        elem.className = classes + " listUnit ui-state-active";
+    else
+        elem.className = classes.replace(" listUnit ui-state-active", "");
+}

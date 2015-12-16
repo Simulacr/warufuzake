@@ -1,10 +1,8 @@
 package desu.nya.shared.nihongo.test.adposition.units;
 
-import org.primefaces.component.selectbooleanbutton.SelectBooleanButton;
-
-import javax.el.ValueExpression;
 import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
+import javax.faces.component.html.HtmlOutputText;
+import java.util.regex.Pattern;
 
 /**
  * Created by ievstratov on 15.12.2015.
@@ -12,33 +10,31 @@ import javax.faces.context.FacesContext;
 public class ListUnit implements Unit {
 
   private String content;
-  private SelectBooleanButton btn;
+//  private SelectBooleanButton btn;
+private HtmlOutputText label;
 
   @Override
   public UIComponent getComponent()
   {
-    return btn;
+    return label;
   }
 
-  public ListUnit(String content, int num) {
+  public ListUnit(String content) {
 
-    System.err.println(content);
+
+
     boolean checked = content.startsWith("-") && content.endsWith("-");
-    if(checked)
-      this.content = content.substring(1, content.length() - 2);
-    btn = new SelectBooleanButton();
-    btn.setLabel(this.content);
-    btn.setDisabled(checked);
-    btn.setValueExpression("", createValueExpression("#{navigation.updateForm.checked[" + num + "]}"));
-    btn.setOffLabel(content.replaceAll("-", ""));
-    btn.setOnLabel(content.replaceAll("-", ""));
-    btn.setStyle("font-size: 13px");
-    btn.setStyleClass("listUnit");
+    this.content = checked ? content.substring(1, content.length() - 2) : content;
+    this.content = this.content.
+            replaceAll(Pattern.quote("["), "<ruby><rb>").
+            replaceAll(";", "</rb><rp>(</rp><rt>").
+            replaceAll(Pattern.quote("]"), "</rt><rp>)</rp></ruby>");
+    label = new HtmlOutputText();
+    label.setEscape(false);
+    label.setValue(CONTROL.replace("%TEXT%", this.content).replace("%STYLE_CLASS%", checked ? " ui-state-disabled listUnit ui-state-active" : "")) ;
   }
 
-  private ValueExpression createValueExpression(String valueExpression) {
-    FacesContext facesContext = FacesContext.getCurrentInstance();
-    return facesContext.getApplication().getExpressionFactory().createValueExpression(
-        facesContext.getELContext(), valueExpression, String.class);
-  }
+  private static final String CONTROL = "<div class=\"ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only　%STYLE_CLASS%\" " +
+          "style=\"padding: 0 10px;margin: 0 2px\" onclick=\"checkTestVariant(this)\">"+
+  "<span class=\"ui-button-text ui-c\" style=\"padding-top:8px\">%TEXT%</span></div>";
 }

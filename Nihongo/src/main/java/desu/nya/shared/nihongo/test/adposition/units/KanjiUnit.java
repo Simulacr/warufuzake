@@ -2,6 +2,7 @@ package desu.nya.shared.nihongo.test.adposition.units;
 
 import javax.faces.component.UIComponent;
 import javax.faces.component.html.HtmlOutputText;
+import java.util.regex.Pattern;
 
 /**
  * Created by Ker on 07.12.2015.
@@ -22,7 +23,6 @@ public class KanjiUnit implements Unit {
     kanji = temp[0];
     furi = temp[1];
     label = new HtmlOutputText();
-//    label.setStyleClass(styleClass);
     label.setEscape(false);
     label.setValue(toString());
   }
