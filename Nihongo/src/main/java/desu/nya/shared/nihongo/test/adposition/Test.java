@@ -15,16 +15,24 @@ import java.util.List;
 public class Test implements HasLessonEntity {
   private Integer lesson;
   private Integer id;
+  private String header;
   private List<TestAdposition> tests;
   private List<Unit> list;
   private List<Tab> panel;
 
   public Test(Integer id, Integer lesson)
   {
+    this(id, lesson, null);
+  }
+
+  public Test(Integer id, Integer lesson, String header)
+  {
     this.id = id;
     this.lesson = lesson;
+    this.header = header;
     tests = new ArrayList<>();
     panel = new ArrayList<>();
+
   }
 
   @Override
@@ -87,5 +95,15 @@ public class Test implements HasLessonEntity {
   public void setTabs(List<Tab> panel)
   {
     this.panel = panel;
+  }
+
+  public String getHeader()
+  {
+    return header;
+  }
+
+  public void setHeader(String header)
+  {
+    this.header = header;
   }
 }

@@ -11,7 +11,7 @@ import desu.nya.web.forms.GenericModel;
 public class TestListForm extends GenericListForm<Test> {
     public void initModel() {
         super.initModel();
-        model.addColumn("Number", ".id", 40, GenericModel.Align.center);
         model.addColumn("Number", ".lesson", 40, GenericModel.Align.center);
+      model.addColumn("Name", ".header");
     }
 }

@@ -13,7 +13,7 @@
         </composite:interface>
 
         <composite:implementation>
-         <div style="#{cc.attrs.footer ? 'position: absolute;bottom:1px;' : ''}">
+         <div style="#{cc.attrs.footer ? 'position: absolute;bottom:1px;' : ''}height: 32px">
            <c:forEach var="button" items="${cc.attrs.buttons}">
              <p:commandButton value="#{translatorBean.getString(button.code)}"
                           actionListener="#{navigation.handleAction(button.page)}" update=":contentForm"

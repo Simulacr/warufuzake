@@ -15,9 +15,8 @@ public class KotobaListForm extends GenericHasLessonListForm<Kotoba> {
     super.initModel();
     model.addColumn("Kanji", ".text", 40, GenericModel.Align.center);
     model.addColumn("Meaning", ".meaning", 200, GenericModel.Align.center);
-//    model.addColumn("Adjective", ".adjective", 60);
-//    model.addColumn("Verb", ".verb", 60);
     model.addColumn("Comment", ".comment");
+    model.addColumn("Lesson", ".lesson");
     model.setBuilder(item -> item.isAdjective() ? "color: red" : "");
   }
 

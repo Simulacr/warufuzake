@@ -1,9 +1,7 @@
 package desu.nya.shared.nihongo.test.adposition;
 
-import desu.nya.shared.nihongo.test.adposition.units.Unit;
-import org.primefaces.component.panel.Panel;
-import org.primefaces.component.tabview.Tab;
-import org.primefaces.component.wizard.Wizard;
+import org.primefaces.component.outputpanel.OutputPanel;
+import org.primefaces.component.panelgrid.PanelGrid;
 
 import javax.faces.component.html.HtmlOutputText;
 import java.util.ArrayList;
@@ -17,7 +15,7 @@ public class TestAdposition {
     private List<AdpositionUnit> mondai = new ArrayList<>();
   private int width = 10;
 
-  public void addAdpositionUnit(String content, String type, String labelValue, Panel panel) {
+  public void addAdpositionUnit(String content, String type, String labelValue, PanelGrid panel) {
     boolean isRei = "rei".equals(type) || "list".equals(type);
     AdpositionUnit adpositionUnit = new AdpositionUnit(content, width, type);
     if(isRei) {
@@ -27,23 +25,17 @@ public class TestAdposition {
       mondai.add(adpositionUnit);
     }
     HtmlOutputText label = new HtmlOutputText();
-    label.setValue(labelValue);
+    OutputPanel contentPanel = new OutputPanel();
+    label.setValue(labelValue == null ? "" : labelValue);
     panel.getChildren().add(label);
-    panel.getChildren().addAll(adpositionUnit.getComponents());
-    panel.getChildren().add(getBR());
+    contentPanel.getChildren().addAll(adpositionUnit.getComponents());
+    contentPanel.setStyle("border: 0");
+    panel.getChildren().add(contentPanel);
   }
 
     public TestAdposition(int width) {
       this.width = width;
     }
-
-  public int register(List<Unit> list) {
-    list = new ArrayList<>();
-    for(AdpositionUnit adpositionUnit: mondai)
-      for(Unit unit: adpositionUnit.getUnits())
-        unit.register(list);
-    return list.size();
-  }
 
   public List<AdpositionUnit> getMondai()
   {
@@ -53,12 +45,5 @@ public class TestAdposition {
   public List<AdpositionUnit> getRei()
   {
     return rei;
-  }
-
-  private HtmlOutputText getBR() {
-    HtmlOutputText br = new HtmlOutputText();
-    br.setEscape(false);
-    br.setValue("<br/>");
-    return br;
   }
 }
