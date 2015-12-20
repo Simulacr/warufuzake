@@ -38,14 +38,14 @@ public class MenuBean implements Serializable {
             createMenuItem("Kotoba", "kotoba", true),
             createMenuItem("Text", "tekisto", true)));
     shortcutsMenu.addElement(createSubMenu("Test",
-            createMenuItem("Hiragana", "hiragana", false),
-            createMenuItem("Katakana", "katakana", false),
-            createMenuItem("Kanji", "kanji", false),
+//            createMenuItem("Hiragana", "hiragana", false),
+//            createMenuItem("Katakana", "katakana", false),
+//            createMenuItem("Kanji", "kanji", false),
             createMenuItem("Test", "testo", true),
             createMenuItem("Kotoba", "kotobaQuiz", true)));
     shortcutsMenu.addElement(createSubMenu("Books",
-            createMenuItem("Minna_no_nihongo", "minnaNoNihongo", false),
-            createMenuItem("Grammatical_test", "grammatical", false),
+//            createMenuItem("Minna_no_nihongo", "minnaNoNihongo", false),
+//            createMenuItem("Grammatical_test", "grammatical", false),
             createMenuItem("Audition", "audition", true)));
 
     megaMenu = new DefaultMenuModel();
@@ -55,10 +55,10 @@ public class MenuBean implements Serializable {
             createMenuItem("Kotoba", "kotoba", true),
             createMenuItem("Grammatic", "grammatic", true)));
     megaMenu.addElement(createMegaSubMenu("Books_Audio",
-            createMenuItem("Kaiwa", "kaiwa", false),
-            createMenuItem("Renshuu", "renshuu", false),
-            createMenuItem("Audition", "audition", false),
-            createMenuItem("Text", "tekisto", false),
+//            createMenuItem("Kaiwa", "kaiwa", false),
+//            createMenuItem("Renshuu", "renshuu", false),
+//            createMenuItem("Audition", "audition", false),
+//            createMenuItem("Text", "tekisto", false),
             createMenuItem("Bunkei_Renbun", "bunkei", false)));
     megaMenu.addElement(createMegaSubMenu("Admin",
             createMenuItem("Users", "users", true),

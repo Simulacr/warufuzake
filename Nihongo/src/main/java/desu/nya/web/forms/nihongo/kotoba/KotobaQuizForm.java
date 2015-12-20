@@ -77,6 +77,8 @@ public class KotobaQuizForm extends GenericUpdateForm<Kotoba>{
 
     lessonKotobas = ((KotobaService)service).getAllKotobaOfLessons(lessons);
     allKanji = ((KotobaService)service).getAllKanjiBeforeLesson(maxLesson);
+    if(allKanji.isEmpty())
+      getManipulator().getMessageDialog().addMessage("There are no kanji for these lessons");
   }
 
   public void onGo() {
@@ -111,7 +113,7 @@ public class KotobaQuizForm extends GenericUpdateForm<Kotoba>{
 
   private void randomizeKanji() {
     randomKanjiList.clear();
-    for(int i=0; i<10; i++)
+    for (int i=0; i<10; i++)
       randomKanjiList.add(allKanji.get(random.nextInt(allKanji.size())));
   }
 

@@ -9,15 +9,16 @@
       xmlns:tr="http://nya.desu/translator"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:body>
-    <p:panel header="${ff.title}">
+    <p:panel header="#{ff.title}" style="position: absolute; bottom: 30px; top: 0;left: 0; right: 0; overflow-y: scroll">
         <p:wizard flowListener="#{ff.onFlowProcess}">
-            <c:forEach items="${value.tabs}" var="tab">
-                <p:tab binding="${tab}"/>
+            <c:forEach items="#{value.tabs}" var="tab">
+                <p:tab binding="#{tab}"/>
             </c:forEach>
         </p:wizard>
     </p:panel>
-    <p:commandButton value="#{translatorBean.getString('Validate')}" disabled="${ff.lastTab}"
-                     actionListener="#{navigation.handleAction('validate')}" update=":contentForm"
-                     immediate="true" onclick="#{navigation.blockerString}" style="position: absolute;bottom:1px;"/>
+
+    <p:commandButton value="#{translatorBean.getString('Validate')}" disabled="#{ff.lastTab}"
+                     actionListener="#{updateForm.onValidate}" update=":contentForm"
+                     onclick="#{navigation.blockerString}" style="position: absolute;bottom:1px;"/>
 </h:body>
 </html>

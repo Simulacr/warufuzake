@@ -39,7 +39,7 @@ public class MondaiUnit implements Unit {
   public List<Unit> register(List<Unit> list)
   {
     list.add(this);
-    inputText.setValueExpression("value", createValueExpression("#{navigation.updateForm.list[" + list.indexOf(this) + "]}", String.class));
+    inputText.setValueExpression("value", createValueExpression("#{navigation.updateForm.list[" + list.indexOf(this) + "]}"));
     return list;
   }
 
@@ -51,9 +51,9 @@ public class MondaiUnit implements Unit {
     return isValid;
   }
 
-  private ValueExpression createValueExpression(String valueExpression, Class<?> valueType) {
+  private ValueExpression createValueExpression(String valueExpression) {
     FacesContext facesContext = FacesContext.getCurrentInstance();
     return facesContext.getApplication().getExpressionFactory().createValueExpression(
-        facesContext.getELContext(), valueExpression, valueType);
+        facesContext.getELContext(), valueExpression, String.class);
   }
 }

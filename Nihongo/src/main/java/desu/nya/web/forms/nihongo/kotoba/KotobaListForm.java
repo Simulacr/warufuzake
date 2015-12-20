@@ -13,7 +13,7 @@ public class KotobaListForm extends GenericHasLessonListForm<Kotoba> {
 
   public void initModel() {
     super.initModel();
-    model.addColumn("Kanji", ".text", 40, GenericModel.Align.center);
+    model.addColumn("Kanji", ".text", 60, GenericModel.Align.center);
     model.addColumn("Meaning", ".meaning", 200, GenericModel.Align.center);
     model.addColumn("Comment", ".comment");
     model.addColumn("Lesson", ".lesson");

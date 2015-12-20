@@ -44,7 +44,7 @@ public class Translator{
         }
         catch(org.springframework.context.NoSuchMessageException ex)
         {
-            return "@" + message;
+            return message == null ? "No message" : "@" + message;
         }
     }
     
