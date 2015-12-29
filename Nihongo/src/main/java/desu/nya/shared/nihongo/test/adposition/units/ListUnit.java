@@ -10,8 +10,9 @@ import java.util.regex.Pattern;
 public class ListUnit implements Unit {
 
   private String content;
-//  private SelectBooleanButton btn;
-private HtmlOutputText label;
+  //  private SelectBooleanButton btn;
+  private HtmlOutputText label;
+  private HtmlOutputText preview;
 
   @Override
   public UIComponent getComponent()
@@ -19,10 +20,13 @@ private HtmlOutputText label;
     return label;
   }
 
+  @Override
+  public UIComponent getPreviewComponent()
+  {
+    return preview;
+  }
+
   public ListUnit(String content) {
-
-
-
     boolean checked = content.startsWith("-") && content.endsWith("-");
     this.content = checked ? content.substring(1, content.length() - 2) : content;
     this.content = this.content.
@@ -32,6 +36,9 @@ private HtmlOutputText label;
     label = new HtmlOutputText();
     label.setEscape(false);
     label.setValue(CONTROL.replace("%TEXT%", this.content).replace("%STYLE_CLASS%", checked ? " ui-state-disabled listUnit ui-state-active" : "")) ;
+    preview = new HtmlOutputText();
+    preview.setEscape(false);
+    preview.setValue(CONTROL.replace("%TEXT%", this.content).replace("%STYLE_CLASS%", checked ? " ui-state-disabled listUnit ui-state-active" : "")) ;
   }
 
   private static final String CONTROL = "<div class=\"ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only　%STYLE_CLASS%\" " +

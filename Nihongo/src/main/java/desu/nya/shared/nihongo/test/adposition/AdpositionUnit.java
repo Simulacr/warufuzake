@@ -82,4 +82,8 @@ public class AdpositionUnit {
   public List<UIComponent> getComponents() {
     return units.stream().map(Unit::getComponent).collect(Collectors.toList());
   }
+
+  public List<UIComponent> getPreviewComponents() {
+    return units.stream().map(Unit::getPreviewComponent).collect(Collectors.toList());
+  }
 }

@@ -19,6 +19,7 @@ public class Test implements HasLessonEntity {
   private List<TestAdposition> tests;
   private List<Unit> list;
   private List<Tab> panel;
+  private Tab totalTab;
 
   public Test(Integer id, Integer lesson)
   {
@@ -32,6 +33,7 @@ public class Test implements HasLessonEntity {
     this.header = header;
     tests = new ArrayList<>();
     panel = new ArrayList<>();
+    totalTab = new Tab();
 
   }
 
@@ -105,5 +107,15 @@ public class Test implements HasLessonEntity {
   public void setHeader(String header)
   {
     this.header = header;
+  }
+
+  public Tab getTotalTab()
+  {
+    return totalTab;
+  }
+
+  public void setTotalTab(Tab totalTab)
+  {
+    this.totalTab = totalTab;
   }
 }

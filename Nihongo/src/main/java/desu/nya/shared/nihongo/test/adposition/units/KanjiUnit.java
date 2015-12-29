@@ -8,9 +8,10 @@ import java.util.regex.Pattern;
  * Created by Ker on 07.12.2015.
  */
 public class KanjiUnit implements Unit {
-    private String kanji;
-    private String furi;
+  private String kanji;
+  private String furi;
   private HtmlOutputText label;
+  private HtmlOutputText preview;
 
   @Override
   public String toString()
@@ -25,11 +26,20 @@ public class KanjiUnit implements Unit {
     label = new HtmlOutputText();
     label.setEscape(false);
     label.setValue(toString());
+    preview = new HtmlOutputText();
+    preview.setEscape(false);
+    preview.setValue(toString());
   }
 
   @Override
   public UIComponent getComponent()
   {
     return label;
+  }
+
+  @Override
+  public UIComponent getPreviewComponent()
+  {
+    return preview;
   }
 }

@@ -28,3 +28,7 @@
 .listUnit.ui-state-active {
     text-decoration: line-through !important;
 }
+.test.ui-wizard-navbar {
+    position: absolute;
+    bottom: 2px;
+}

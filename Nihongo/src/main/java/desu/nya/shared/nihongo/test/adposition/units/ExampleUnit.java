@@ -11,8 +11,8 @@ import java.util.regex.Pattern;
  */
 public class ExampleUnit implements Unit {
     private String example;
-  private InputText inputText;
   private HtmlOutputText label;
+  private HtmlOutputText previewLabel;
 
   @Override
   public String toString()
@@ -21,26 +21,32 @@ public class ExampleUnit implements Unit {
   }
 
   public ExampleUnit(String example, int width) {
-        this.example = example;
-    inputText = new InputText();
-    inputText.setStyleClass(exampleClass);
-    inputText.setStyleClass(styleClass);
-    inputText.setDisabled(true);
-    inputText.setValue(example);
-    inputText.setStyle("width: " + width + "px");
-    label = new HtmlOutputText();
-    label.setEscape(false);
-    label.setValue(example.
+    this.example = example.
             replaceAll(Pattern.quote("["), "<ruby><rb>").
             replaceAll(";", "</rb><rp>(</rp><rt>").
-            replaceAll(Pattern.quote("]"), "</rt><rp>)</rp></ruby>"));
+            replaceAll(Pattern.quote("]"), "</rt><rp>)</rp></ruby>");
+    label = new HtmlOutputText();
+    label.setEscape(false);
+    label.setValue(this.example);
     label.setStyle("width: " + width + "px");
     label.setStyleClass("ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all ui-state-disabled kanjiTest");
+
+    previewLabel = new HtmlOutputText();
+    previewLabel.setEscape(false);
+    previewLabel.setValue(this.example);
+    previewLabel.setStyle("width: " + width + "px");
+    previewLabel.setStyleClass("ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all ui-state-disabled kanjiTest");
     }
 
   @Override
   public UIComponent getComponent()
   {
     return label;
+  }
+
+  @Override
+  public UIComponent getPreviewComponent()
+  {
+    return previewLabel;
   }
 }

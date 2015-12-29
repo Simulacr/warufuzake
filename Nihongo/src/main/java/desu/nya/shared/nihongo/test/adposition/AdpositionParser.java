@@ -9,6 +9,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import javax.faces.component.html.HtmlOutputText;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.xml.parsers.DocumentBuilder;
@@ -18,7 +19,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import java.util.function.Predicate;
 
 /**
  * Created by Ker on 07.12.2015.
@@ -65,6 +65,9 @@ public class AdpositionParser {
 
     public Test get(int lesson) {
       Test test = new Test(lesson, lesson);
+      Tab totalTab = new Tab();
+      totalTab.setTitle("Total");
+      totalTab.setId("totalTab");
       try {
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         Document document =
@@ -72,6 +75,7 @@ public class AdpositionParser {
         NodeList blocks = document.getDocumentElement().getChildNodes();
         for(int i=0; i < blocks.getLength(); i++) {
           Node block = blocks.item(i);
+
           if(block instanceof Element) {//block-tab
             int width = Integer.parseInt(((Element) block).getAttribute("width"));
             Tab tab = new Tab();
@@ -82,6 +86,10 @@ public class AdpositionParser {
             panel.setColumns(2);
             panel.setColumnClasses("no-padding");
             panel.setStyleClass("kanjiPanel");
+            PanelGrid totalPanel = new PanelGrid();
+            totalPanel.setColumns(2);
+            totalPanel.setColumnClasses("no-padding");
+            totalPanel.setStyleClass("kanjiPanel");
             TestAdposition testAdposition = new TestAdposition(width);
             NodeList childNodes = block.getChildNodes();
             for(int j = 0; j< childNodes.getLength(); j++) {
@@ -89,17 +97,24 @@ public class AdpositionParser {
               if(child instanceof Element) {
                 String content = child.getTextContent().trim();
                 String label = ((Element) child).getAttribute("label");
-                testAdposition.addAdpositionUnit(content, child.getNodeName(), label, panel);
+                testAdposition.addAdpositionUnit(content, child.getNodeName(), label, panel, totalPanel);
               }
             }
             tab.getChildren().add(panel);
             test.getTabs().add(tab);
             test.addTest(testAdposition);
+
+            HtmlOutputText header = new HtmlOutputText();
+            header.setValue(tabTitle);
+            totalTab.getChildren().add(header);
+            totalTab.getChildren().add(totalPanel);
           }
+
         }
       } catch (SAXException | IOException e) {
         e.printStackTrace();
       }
+      test.setTotalTab(totalTab);
       return test;
     }
 
